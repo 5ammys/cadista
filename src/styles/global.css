@@ -39,10 +39,10 @@
   --accent-orange: #f97316;
   --accent-orange-dim: rgba(249, 115, 22, 0.15);
   --accent-orange-border: rgba(249, 115, 22, 0.4);
-  --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
-  --text-muted: #475569;
-  --text-dim: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
   --border: #1e293b;
   --border-bright: #2d3f5a;
   --grid-line: rgba(255, 255, 255, 0.025);
@@ -506,7 +506,7 @@ section {
   justify-content: space-between;
   padding: 0.6rem 0.9rem;
   border-bottom: 1px solid var(--border);
-  background: rgba(0,0,0,0.2);
+  background: var(--bg-surface);
 }
 
 .project-card__ref {
@@ -909,7 +909,7 @@ section {
 
 .sidebar__status {
   margin: 2rem 1.5rem 0;
-  background: #0a1628;
+  background: var(--bg-card-hover);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 0.75rem;
@@ -1108,7 +1108,7 @@ section {
 
 /* Data summary card */
 .data-summary {
-  background: #0a1628;
+  background: var(--bg-card-hover);
   border: 1px solid var(--border-bright);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -1125,7 +1125,7 @@ section {
   text-transform: uppercase;
   padding: 0.85rem 1.25rem;
   border-bottom: 1px solid var(--border);
-  background: rgba(0,0,0,0.2);
+  background: var(--bg-surface);
 }
 
 .data-summary__item {
