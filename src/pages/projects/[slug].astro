@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projects } from '../../data/projects.js';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout title={`${project.title} | Samuel Mendez`}>
+  <div class="project-detail">
+    <!-- Hero Image -->
+    <div class="project-detail__hero fade-in">
+      <img src={project.image} alt={project.title} class="project-detail__hero-image" />
+      <div class="project-detail__hero-overlay"></div>
+      <div class="project-detail__hero-badge">REF_ID: {project.refId}</div>
+    </div>
+
+    <div class="container">
+      <div class="project-detail__body">
+        <div class="project-detail__grid">
+          <!-- Detalles Principales -->
+          <div class="project-detail__main fade-in fade-in-delay-1">
+            <div class="project-detail__section-label">01 // Detalles Generales</div>
+            <h1 class="project-detail__title">{project.title}</h1>
+            
+            <div class="project-detail__description-label">Descripción del Proyecto</div>
+            <p class="project-detail__description">{project.description}</p>
+            
+            <div class="project-detail__specs">
+              <div class="project-detail__specs-label">02 // Especificaciones Técnicas</div>
+              <div class="project-detail__specs-grid">
+                <div class="spec-item">
+                  <div class="spec-item__label">Software Stack</div>
+                  <div class="spec-item__value">{project.engineering}</div>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-item__label">Escala Base</div>
+                  <div class="spec-item__value">{project.scale}</div>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-item__label">Estado Actual</div>
+                  <div class="spec-item__value">{project.status}</div>
+                </div>
+              </div>
+              
+              <div class="project-detail__tags">
+                {project.tags.map(tag => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+            
+            <div class="project-detail__section-label" style="margin-top: 3rem;">03 // Galería de Renders</div>
+            <div style="aspect-ratio: 16/9; background: var(--bg-card); border: 1px dashed var(--border); display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md);">
+              <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">RENDER_PREVIEW_UNAVAILABLE</span>
+            </div>
+          </div>
+
+          <!-- Sidebar Data -->
+          <div class="project-detail__sidebar fade-in fade-in-delay-2">
+            <div class="data-summary">
+              <div class="data-summary__header">Data_Summary</div>
+              <div class="data-summary__item">
+                <div class="data-summary__label">Área Total</div>
+                <div class="data-summary__value">{project.area}</div>
+              </div>
+              <div class="data-summary__item">
+                <div class="data-summary__label">Tiempo Drafting</div>
+                <div class="data-summary__value data-summary__value--small">{project.draftingTime}</div>
+              </div>
+              <div class="data-summary__item">
+                <div class="data-summary__label">Revisiones_V</div>
+                <div class="data-summary__value data-summary__value--small">{project.revision}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

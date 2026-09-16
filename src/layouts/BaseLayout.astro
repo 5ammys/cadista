@@ -1,0 +1,154 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Portfolio de Samuel Mendez — Dibujante AutoCAD especializado en planos 2D de casas y piezas 3D.',
+} = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Samuel Mendez" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header class="navbar" id="navbar">
+      <div class="navbar__inner">
+        <a href="/" class="navbar__logo">
+          <svg class="navbar__logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          SM_DRAFT
+        </a>
+
+        <nav class="navbar__nav">
+          <a href="/" class={`navbar__link ${currentPath === '/' ? 'active' : ''}`}>Home</a>
+          <a href="/projects" class={`navbar__link ${currentPath.startsWith('/projects') ? 'active' : ''}`}>Proyectos</a>
+          <a href="/services" class={`navbar__link ${currentPath === '/services' ? 'active' : ''}`}>Servicios</a>
+          <a href="/contact" class="navbar__link navbar__cta">Contacto</a>
+        </nav>
+
+        <button class="navbar__hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="/" class="mobile-nav__link">Home</a>
+      <a href="/projects" class="mobile-nav__link">Proyectos</a>
+      <a href="/services" class="mobile-nav__link">Servicios</a>
+      <a href="/contact" class="mobile-nav__link">Contacto</a>
+    </div>
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <div class="footer__brand-logo">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              SM_DRAFT
+            </div>
+            <p class="footer__brand-desc">
+              Estudio especializado en dibujo técnico y consultoría para despachos de arquitectura y constructoras. Precisión milimétrica desde 2015.
+            </p>
+          </div>
+          <div>
+            <div class="footer__col-label">Localización</div>
+            <div class="footer__col-text">Buenos Aires, AR<br />Disponible de forma remota</div>
+          </div>
+          <div>
+            <div class="footer__col-label">Contacto</div>
+            <div class="footer__col-text">
+              samuelmendez@email.com
+              <br />
+              <a href="/contact" style="color:var(--accent-orange);font-size:0.8rem;margin-top:0.4rem;display:inline-block;">→ Enviar mensaje</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <span class="footer__copyright">© 2026 SM_DRAFT // SAMUEL MENDEZ // TODOS LOS DERECHOS RESERVADOS</span>
+          <span class="footer__copyright">AutoCAD 2D · 3D · Dibujante Técnico</span>
+        </div>
+      </div>
+    </footer>
+
+    <style>
+      .mobile-nav {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(8, 13, 24, 0.97);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+        padding: 1.5rem 2rem;
+        flex-direction: column;
+        gap: 1rem;
+        z-index: 99;
+      }
+      .mobile-nav.open { display: flex; }
+      .mobile-nav__link {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        padding: 0.6rem 0;
+        border-bottom: 1px solid var(--border);
+        transition: color 0.2s;
+      }
+      .mobile-nav__link:hover { color: var(--accent-orange); }
+    </style>
+
+    <script>
+      // Mobile menu
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav  = document.getElementById('mobileNav');
+      hamburger?.addEventListener('click', () => {
+        const isOpen = mobileNav?.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      // Navbar scroll shadow
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        navbar?.classList.toggle('scrolled', window.scrollY > 20);
+      }, { passive: true });
+
+      // Fade-in on scroll
+      const observer = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+        { threshold: 0.1 }
+      );
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+  </body>
+</html>

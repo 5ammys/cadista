@@ -1,0 +1,230 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { projects } from '../data/projects.js';
+
+const featured = projects.slice(0, 4);
+
+function categoryClass(cat) {
+  return cat.toLowerCase();
+}
+function dotClass(cat) {
+  return 'dot--' + cat.toLowerCase();
+}
+---
+
+<BaseLayout title="Samuel Mendez — Dibujante AutoCAD">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="hero__bg">
+      <img src="/images/plano_residencial.jpg" alt="Plano AutoCAD" class="hero__bg-image" />
+      <div class="hero__bg-overlay"></div>
+    </div>
+
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__eyebrow">Dibujante AutoCAD · Buenos Aires, AR</div>
+
+        <h1 class="hero__title">
+          Precisión<br />en cada <span>trazo</span>
+        </h1>
+
+        <p class="hero__subtitle">
+          Diseño de planos arquitectónicos 2D y modelado de piezas 3D de alta fidelidad.
+          Soluciones técnicas optimizadas para flujos de trabajo profesionales.
+        </p>
+
+        <div class="hero__actions">
+          <a href="/projects" class="btn--primary">
+            Explorar Portafolio →
+          </a>
+          <a href="/services" class="btn--ghost">
+            Servicios Técnicos
+          </a>
+        </div>
+
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <div class="hero__stat-value mono">80+</div>
+            <div class="hero__stat-label">Proyectos_Total</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-value mono">0.01</div>
+            <div class="hero__stat-label">Precisión_mm</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-value mono">99%</div>
+            <div class="hero__stat-label">Clientes_OK</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll-indicator">
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══ PROYECTOS DESTACADOS ═══ -->
+  <section class="py-section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div>
+          <div class="section-label">Selected_Work</div>
+          <h2 class="section-title">Proyectos Destacados</h2>
+        </div>
+        <a href="/projects" class="section-link">Ver Archivo Completo →</a>
+      </div>
+
+      <div class="home-featured-grid fade-in fade-in-delay-1">
+        <!-- Card grande -->
+        <a href={`/projects/${featured[0].slug}`} class="project-card project-card--large">
+          <div class="project-card__header">
+            <span class="project-card__ref mono">{featured[0].refId} / SCALE {featured[0].scale}</span>
+            <span class="project-card__ref mono">···</span>
+          </div>
+          <div class="project-card__image-wrap">
+            <img src={featured[0].image} alt={featured[0].title} class="project-card__image" loading="lazy" />
+            <div class="project-card__image-overlay"></div>
+          </div>
+          <div class="project-card__body">
+            <div class={`project-card__category category--${categoryClass(featured[0].category)}`}>
+              <span class={`project-card__category-dot ${dotClass(featured[0].category)}`}></span>
+              {featured[0].category}
+            </div>
+            <h3 class="project-card__title">{featured[0].title}</h3>
+            <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.6;">{featured[0].description.substring(0,110)}…</p>
+          </div>
+        </a>
+
+        <!-- Columna derecha: 3 mini cards -->
+        <div class="home-featured-side">
+          {featured.slice(1).map((p, i) => (
+            <a href={`/projects/${p.slug}`} class={`project-card project-card--mini fade-in fade-in-delay-${i+2}`}>
+              <div class="project-card__header">
+                <span class="project-card__ref mono">{p.refId} / SCALE {p.scale}</span>
+              </div>
+              <div class="project-card__image-wrap" style="aspect-ratio:16/7">
+                <img src={p.image} alt={p.title} class="project-card__image" loading="lazy" />
+                <div class="project-card__image-overlay"></div>
+              </div>
+              <div class="project-card__body" style="padding:0.8rem">
+                <div class={`project-card__category category--${categoryClass(p.category)}`}>
+                  <span class={`project-card__category-dot ${dotClass(p.category)}`}></span>
+                  {p.category}
+                </div>
+                <h3 class="project-card__title" style="font-size:0.95rem">{p.title}</h3>
+                <div class="project-card__meta">
+                  <div class="project-card__meta-item">
+                    <div class="project-card__meta-label">Engineering</div>
+                    <div class="project-card__meta-value">{p.engineering}</div>
+                  </div>
+                  <div class="project-card__meta-item">
+                    <div class="project-card__meta-label">Status</div>
+                    <div class="project-card__meta-value">{p.status}</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ EXPERTISE TÉCNICO ═══ -->
+  <section class="expertise-section">
+    <div class="container">
+      <div class="expertise-header fade-in">
+        <div class="section-label">AUT_Expertise</div>
+        <h2 class="expertise-header__title">Expertise Técnico en AutoCAD</h2>
+        <p class="expertise-header__description">
+          Cada proyecto es sometido a un riguroso control de calidad para garantizar
+          el cumplimiento de normativas locales e internacionales.
+        </p>
+      </div>
+
+      <div class="expertise-grid">
+        <div class="expertise-card fade-in fade-in-delay-1">
+          <div class="expertise-card__label">ARC_Arquitectura</div>
+          <h3 class="expertise-card__title">Plantas y Alzados</h3>
+          <p class="expertise-card__description">
+            Documentación completa de proyectos arquitectónicos con jerarquía de líneas
+            optimizada, cotas, nomenclatura de espacios y detalles constructivos.
+          </p>
+        </div>
+        <div class="expertise-card fade-in fade-in-delay-2">
+          <div class="expertise-card__label">ARC_Instalaciones</div>
+          <h3 class="expertise-card__title">Planos de Instalación</h3>
+          <p class="expertise-card__description">
+            Redes hidráulicas, eléctricas, sanitarias y climatización coordinadas sin
+            interferencias. Documentación lista para obra y trámites municipales.
+          </p>
+        </div>
+        <div class="expertise-card fade-in fade-in-delay-3">
+          <div class="expertise-card__label">ARC_Digitalización</div>
+          <h3 class="expertise-card__title">Conversión Raster-to-CAD</h3>
+          <p class="expertise-card__description">
+            Digitalización de planos antiguos en papel a formatos vectoriales DWG/DXF
+            editables. Geometría limpia y capas organizadas por disciplina.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA BANDA ═══ -->
+  <section class="cta-band">
+    <div class="container">
+      <div class="cta-band__inner fade-in">
+        <div>
+          <div class="section-label">Próximo Proyecto</div>
+          <h2 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:700;max-width:480px;margin-top:0.4rem;">
+            ¿Tenés un proyecto que necesita precisión técnica?
+          </h2>
+        </div>
+        <a href="/contact" class="btn--primary" style="flex-shrink:0;">
+          Hablemos →
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ─── Featured Grid ─── */
+  .home-featured-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+  .home-featured-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  @media (max-width: 900px) {
+    .home-featured-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ─── CTA Band ─── */
+  .cta-band {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, rgba(249,115,22,0.06) 0%, transparent 60%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+  .cta-band__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+</style>

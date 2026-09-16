@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contacto | Samuel Mendez">
+  <div class="container py-section" style="padding-top: 120px; min-height: 80vh;">
+    <div class="section-header fade-in">
+      <div>
+        <div class="section-label">Contacto</div>
+        <h1 class="section-title">Iniciemos un Proyecto</h1>
+      </div>
+    </div>
+    
+    <div class="contact-grid fade-in fade-in-delay-1">
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Mensaje de prueba. Esta es una demostración del formulario.');">
+        <div class="form-group">
+          <label class="form-label" for="name">Nombre / Empresa</label>
+          <input class="form-input" type="text" id="name" placeholder="Ej. Arquitectura y Diseño S.A." required />
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="email">Email de Contacto</label>
+          <input class="form-input" type="email" id="email" placeholder="correo@ejemplo.com" required />
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="project">Requerimientos Técnicos</label>
+          <textarea class="form-textarea" id="project" placeholder="Describe brevemente el tipo de planos o modelos 3D que necesitas, área estimada y plazos..." required></textarea>
+        </div>
+        
+        <button type="submit" class="btn--primary" style="align-self: flex-start; margin-top: 0.5rem;">
+          Enviar Requerimientos →
+        </button>
+      </form>
+      
+      <div class="contact-info">
+        <div class="contact-info__item">
+          <div class="contact-info__label">Email Directo</div>
+          <div class="contact-info__value">samuelmendez@email.com</div>
+        </div>
+        <div class="contact-info__item">
+          <div class="contact-info__label">WhatsApp / Teléfono</div>
+          <div class="contact-info__value">+54 9 11 1234-5678</div>
+        </div>
+        <div class="contact-info__item">
+          <div class="contact-info__label">Ubicación & Disponibilidad</div>
+          <div class="contact-info__value">
+            Buenos Aires, Argentina<br/>
+            <span style="color: #34d399; font-size: 0.85rem; margin-top: 0.25rem; display: block;">● Disponible para trabajo remoto internacional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
