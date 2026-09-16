@@ -25,6 +25,11 @@ const currentPath = Astro.url.pathname;
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <script>
+      // Apply theme before page load
+      const theme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
   </head>
   <body>
     <!-- NAVBAR -->
@@ -42,6 +47,19 @@ const currentPath = Astro.url.pathname;
           <a href="/projects" class={`navbar__link ${currentPath.startsWith('/projects') ? 'active' : ''}`}>Proyectos</a>
           <a href="/services" class={`navbar__link ${currentPath === '/services' ? 'active' : ''}`}>Servicios</a>
           <a href="/contact" class="navbar__link navbar__cta">Contacto</a>
+          <button id="themeToggle" class="navbar__link" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;" aria-label="Cambiar tema">
+            <svg class="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </button>
         </nav>
 
         <button class="navbar__hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
@@ -76,7 +94,7 @@ const currentPath = Astro.url.pathname;
               SM_DRAFT
             </div>
             <p class="footer__brand-desc">
-              Estudio especializado en dibujo técnico y consultoría para despachos de arquitectura y constructoras. Precisión milimétrica desde 2015.
+              Dibujante técnico junior especializado en la creación de planos y documentación técnica para despachos de arquitectura y constructoras.
             </p>
           </div>
           <div>
@@ -142,6 +160,16 @@ const currentPath = Astro.url.pathname;
       window.addEventListener('scroll', () => {
         navbar?.classList.toggle('scrolled', window.scrollY > 20);
       }, { passive: true });
+
+      // Theme toggle
+      const themeToggle = document.getElementById('themeToggle');
+      themeToggle?.addEventListener('click', () => {
+        const doc = document.documentElement;
+        const current = doc.getAttribute('data-theme');
+        const next = current === 'light' ? 'dark' : 'light';
+        doc.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
 
       // Fade-in on scroll
       const observer = new IntersectionObserver(
