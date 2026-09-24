@@ -95,4 +95,20 @@ export const projects = [
     image: "/images/plano_unifamiliar.jpg",
     tags: ["Planta Baja", "Planta Alta", "Fachada Norte", "Fachada Sur"],
   },
+  {
+    slug: "pieza-mecanica-3d",
+    title: "Carcasa Mecánica 3D",
+    category: "INDUSTRIAL",
+    refId: "PRJ-801",
+    scale: "1:1",
+    engineering: "AutoCAD 3D",
+    status: "Finalizado",
+    area: "N/A",
+    draftingTime: "24 Horas",
+    revision: "Rev. 01_Final",
+    description:
+      "Modelado 3D de precisión para carcasa de embrague mecánico. Geometría compleja con ranuras de ventilación y brida de montaje con perforaciones. Diseño optimizado para procesos de fabricación y validación técnica.",
+    image: "/images/pieza_mecanica_3d.jpg",
+    tags: ["Modelo 3D", "Pieza Mecánica", "Diseño Industrial", "Precisión"],
+  },
 ];
