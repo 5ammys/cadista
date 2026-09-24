@@ -47,7 +47,8 @@ const currentPath = Astro.url.pathname;
           <a href="/projects" class={`navbar__link ${currentPath.startsWith('/projects') ? 'active' : ''}`}>Proyectos</a>
           <a href="/services" class={`navbar__link ${currentPath === '/services' ? 'active' : ''}`}>Servicios</a>
           <a href="/contact" class="navbar__link">Contacto</a>
-          <a href="/#sobre-mi" class="btn--primary" style="padding: 0.35rem 1rem; font-size: 0.75rem; margin-left: 0.5rem; letter-spacing: 0.05em; border-radius: 4px;">Sobre Mí</a>
+          <a href="/#sobre-mi" class="navbar__link">Sobre Mí</a>
+          <a href="/docs/cv_samuel_mendez.pdf" target="_blank" class="btn--primary" style="padding: 0.35rem 1rem; font-size: 0.75rem; margin-left: 0.5rem; letter-spacing: 0.05em; border-radius: 4px;">Descargar CV</a>
           <button id="themeToggle" class="navbar__link" style="background:none;border:none;cursor:pointer;display:flex;align-items:center;padding-left:0.5rem;" aria-label="Cambiar tema">
             <svg class="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="5"/>
@@ -77,7 +78,8 @@ const currentPath = Astro.url.pathname;
       <a href="/projects" class="mobile-nav__link">Proyectos</a>
       <a href="/services" class="mobile-nav__link">Servicios</a>
       <a href="/contact" class="mobile-nav__link">Contacto</a>
-      <a href="/#sobre-mi" class="btn--primary" style="text-align: center; margin-top: 1rem; padding: 0.8rem; font-size: 0.85rem;">Sobre Mí</a>
+      <a href="/#sobre-mi" class="mobile-nav__link">Sobre Mí</a>
+      <a href="/docs/cv_samuel_mendez.pdf" target="_blank" class="btn--primary" style="text-align: center; margin-top: 1rem; padding: 0.8rem; font-size: 0.85rem;">Descargar CV</a>
     </div>
 
     <main>
@@ -106,7 +108,9 @@ const currentPath = Astro.url.pathname;
           <div>
             <div class="footer__col-label">Contacto</div>
             <div class="footer__col-text">
-              samuelmendez@email.com
+              samue0465@gmail.com
+              <br />
+              +54 11-6456-1145
               <br />
               <a href="/contact" style="color:var(--accent-orange);font-size:0.8rem;margin-top:0.4rem;display:inline-block;">→ Enviar mensaje</a>
             </div>

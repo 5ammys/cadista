@@ -57,8 +57,8 @@ const { project } = Astro.props;
             </div>
             
             <div class="project-detail__section-label" style="margin-top: 3rem;">03 // Galería de Renders</div>
-            <div style="aspect-ratio: 16/9; background: var(--bg-card); border: 1px dashed var(--border); display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md);">
-              <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">RENDER_PREVIEW_UNAVAILABLE</span>
+            <div style="border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border);">
+              <img src={project.image} alt={`Render de ${project.title}`} style="width: 100%; height: auto; display: block;" loading="lazy" />
             </div>
           </div>
 
